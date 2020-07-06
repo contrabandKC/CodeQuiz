@@ -2,7 +2,13 @@ var timerEl = document.querySelector("#timer")
 var buttonEl = document.querySelector("#startButton")
 var startEl = document.querySelector("#start")
 var quizEl = document.querySelector("#quiz")
+var questionEl = document.querySelector("#question")
 var answerEl = document.querySelector("#answers")
+var doneEl = document.querySelector('#done')
+var submitButton = document.querySelector("#submit")
+var scoreEl = document.querySelector("#score")
+var backButton  = document.querySelector("#back")
+
 
 var questionNumber = 0
 var question = ''
@@ -20,13 +26,57 @@ var questions = [{
     correct:1,
 }]
 
+function toggleDone() {
+    if(doneEl.style.display == "none"){
+        doneEl.style.display = "block"
+    }
+    else{
+        doneEl.style.display = "none"
+
+    }
+}
+
+function toggleScore() {
+    if(scoreEl.style.display == "none"){
+        scoreEl.style.display = "block"
+    }
+    else{
+        scoreEl.style.display = "none"
+
+    }
+}
+
+function toggleStart() {
+    if(startEl.style.display == "none"){
+        startEl.style.display = "block"
+    }
+    else{
+        startEl.style.display = "none"
+
+    }
+}
+
+function toggleQuiz() {
+    if(quizEl.style.display == "none"){
+        quizEl.style.display = "block"
+    }
+    else{
+        quizEl.style.display = "none"
+
+    }
+}
 function time(){
 
-    var timer = 100
+    var timer = 3
 
     var timerInterval = setInterval(function() {
         timer--
         timerEl.textContent = "Time: " + timer
+        
+        if(timer == 0){
+            clearInterval(timerInterval)
+            toggleDone()
+        }
 
     }, 1000)
 
@@ -84,3 +134,13 @@ buttonEl.addEventListener("click", function(){
 
 })
 
+submitButton.addEventListener("click", function () {
+    toggleDone()
+    toggleScore()
+})
+
+
+backButton.addEventListener("click", function(){
+    toggleScore()
+    toggleStart()
+})

@@ -18,7 +18,7 @@
 
     </header>
     
-    <section id="start">
+    <section id="start" style="display: block;">
         <h1>Coding Quiz Challenge</h1>
         <h4>Try  to answer the following code-related questions within the time <br>
         limit. keep in mind that incorrect answers will penalize your score/time <br>
@@ -28,31 +28,38 @@
         <button id="startButton">Start Quiz</button>
 
     </section>
-    <section id="quiz">
+
+
+    <section id="quiz" style="display: none;" >
+        <div id="question">
+
+        </div>
+
+        <div id="answers">
+
+        </div>
 
     </section>
-    <section id="answers">
+    
 
-    </section>
-
-    <section id="done">
+    <section id="done" style="display: none;">
         <h1>All done!</h1>
         <h4>Your final score is </h4>
         <label for="name">Enter initials</label>
         <input type="text" id="name">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="submit" class="btn btn-primary">Submit</button>
     </section>
 
-    <section id="score">
+    <section id="score" style="display: none;">
         <h1>Highscores</h1>
-        <button>Go back</button>
         <ol>
             <li>name 22</li>
         </ol>
+        <button id="back">Go back</button>
         <button>Clear Highscores</button>
     </section>
 
-    <section>
+    <section style="display: none;">
         <hr>
         <h4>wrong</h4>
     </section>
