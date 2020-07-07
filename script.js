@@ -15,7 +15,7 @@ var questionNumber = 0
 var question = ''
 var answer = ''
 var correct = ''
-var timer = 10
+var timer = 75
 
 var questions = [{
     question: "question 1",
@@ -164,6 +164,7 @@ buttonEl.addEventListener("click", function(){
             }
             else{
                 questionNumber++
+                timer = timer - 15
                 loadQuestion()
                 toggleWrong()
             }
