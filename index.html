@@ -44,7 +44,7 @@
 
     <section id="done" style="display: none;">
         <h1>All done!</h1>
-        <h4>Your final score is </h4>
+        <h4 id="user Score">Your final score is </h4>
         <label for="name">Enter initials</label>
         <input type="text" id="name">
         <button id="submit" class="btn btn-primary">Submit</button>
@@ -59,9 +59,14 @@
         <button>Clear Highscores</button>
     </section>
 
-    <section style="display: none;">
+    <section id="wrong" style="display: none;">
         <hr>
         <h4>wrong</h4>
+    </section>
+
+    <section id="correct" style="display: none;">
+        <hr>
+        <h4>Correct!</h4>
     </section>
 
 
