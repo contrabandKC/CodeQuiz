@@ -14,7 +14,7 @@ var userScoreEl = document.querySelector("#userScore")
 var nameInput=document.querySelector("#name")
 var userScores = document.querySelector("#userScores")
 var clearButton = document.querySelector("#clear")
-
+var highScoresWl = document.querySelector("#highScores")
 
 var questionNumber = 0
 // var question = ''
@@ -58,12 +58,18 @@ function toggleDone() {
 }
 
 function toggleScore() {
+
+
+    while (userScores.lastElementChild) {
+        userScores.removeChild(userScores.lastElementChild);
+      }
     if(scoreEl.style.display == "none"){
         scoreEl.style.display = "block"
 
         Object.keys(localStorage).forEach(element => {
             var user = document.createElement("li")
             user.textContent = element + " - " +localStorage.getItem(element)
+            user.setAttribute('class', "bg-secondary text-white p-1 mb-2")
             userScores.appendChild(user)
             // console.log(element, element.value )
             
@@ -99,7 +105,7 @@ function toggleQuiz() {
 function toggleWrong() {
     if(wrongEl.style.display == "none"){
         wrongEl.style.display = "block"
-        var correctTime = 2
+        var correctTime = 1
         var timerInterval = setInterval(function() {
             correctTime--
             if(correctTime == 0){
@@ -119,7 +125,7 @@ function toggleCorrect() {
     if(correctEl.style.display == "none"){
         correctEl.style.display = "block"
 
-        var correctTime = 2
+        var correctTime = 1
         var timerInterval = setInterval(function() {
             correctTime--
             if(correctTime == 0){
@@ -150,7 +156,7 @@ function loadQuestion() {
             var answers = document.createElement("button")
             answers.textContent =element
             console.log(i)
-            answers.setAttribute("class","btn btn-primary ")
+            answers.setAttribute("class","btn btn-primary  p-3 m-2 ")
             answers.setAttribute("data-index", i)
             answerEl.appendChild(answers)
     
@@ -253,4 +259,10 @@ clearButton.addEventListener("click", function(){
 
     toggleScore()
     toggleScore()
+})
+
+highScoresWl.addEventListener("click", function(){
+    toggleStart()
+    toggleScore()
+
 })
