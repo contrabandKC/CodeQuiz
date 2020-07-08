@@ -7,7 +7,7 @@ create a timed quiz game. includes a top score section. the high score section i
 
 ## Install
 Access the code via the GitHub repository here:
-[GitHub Repository] (https://github.com/contrabandKC/CodeQuiz)
+[GitHub Repository](https://github.com/contrabandKC/CodeQuiz)
 
 Access the live site via GitHub Pages here:
 [GitHub Pages](https://contrabandkc.github.io/CodeQuiz/)
