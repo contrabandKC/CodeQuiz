@@ -13,22 +13,25 @@ var correctEl = document.querySelector("#correct")
 var userScoreEl = document.querySelector("#userScore")
 var nameInput=document.querySelector("#name")
 var userScores = document.querySelector("#userScores")
+var clearButton = document.querySelector("#clear")
+
 
 var questionNumber = 0
-var question = ''
-var answer = ''
-var correct = ''
-var timer = 3
+// var question = ''
+// var answer = ''
+// var correct = ''
+var timer = 75
+var finalScore = 0
 
 var questions = [{
     question: "Commonly used data types DO NOT include:",
     answer: ["Strings","booleans", "alerts", "numbers" ],
-    correct:3,
+    correct:2,
 },
 {
     question: "The condition in an if/else statement is enclose within ____.",
     answer: ["quotes","curly brackets", "parentheses", "square brackets" ],
-    correct:3,
+    correct:2,
 }
 // ,
 // {
@@ -46,7 +49,7 @@ var questions = [{
 function toggleDone() {
     if(doneEl.style.display == "none"){
         doneEl.style.display = "block"
-        userScoreEl.textContent = "Your final score " + timer
+        userScoreEl.textContent = "Your final score " + finalScore
     }
     else{
         doneEl.style.display = "none"
@@ -62,7 +65,7 @@ function toggleScore() {
             var user = document.createElement("li")
             user.textContent = element + " - " +localStorage.getItem(element)
             userScores.appendChild(user)
-            console.log(element, element.value )
+            // console.log(element, element.value )
             
         });
 
@@ -96,6 +99,15 @@ function toggleQuiz() {
 function toggleWrong() {
     if(wrongEl.style.display == "none"){
         wrongEl.style.display = "block"
+        var correctTime = 2
+        var timerInterval = setInterval(function() {
+            correctTime--
+            if(correctTime == 0){
+                clearInterval(timerInterval)
+                toggleWrong()
+            }
+        
+        }, 1000)
     }
     else{
         wrongEl.style.display = "none"
@@ -106,6 +118,16 @@ function toggleWrong() {
 function toggleCorrect() {
     if(correctEl.style.display == "none"){
         correctEl.style.display = "block"
+
+        var correctTime = 2
+        var timerInterval = setInterval(function() {
+            correctTime--
+            if(correctTime == 0){
+                clearInterval(timerInterval)
+                toggleCorrect()
+            }
+        
+        }, 1000)
     }
     else{
         correctEl.style.display = "none"
@@ -127,36 +149,41 @@ function loadQuestion() {
         questions[questionNumber].answer.forEach(function(element, i) {
             var answers = document.createElement("button")
             answers.textContent =element
-            // console.log(i)
+            console.log(i)
+            answers.setAttribute("class","btn btn-primary ")
             answers.setAttribute("data-index", i)
             answerEl.appendChild(answers)
     
         });
     }
     else{
-        clearInterval(timerInterval)
-        toggleDone()
-
+        // toggleDone()
+        // toggleQuiz()
+        finalScore = timer
+        timer = 1
     }
 
 }
 
 submitButton.addEventListener("click", function () {
     toggleDone()
-    toggleScore()
     var name = nameInput.value.trim()
     localStorage.setItem(name, timer)
+    toggleScore()
+
 })
 
 
 backButton.addEventListener("click", function(){
     toggleScore()
     toggleStart()
+    timerEl.textContent = "Time: 75"
 })
 
 
 function time(){
-
+    // timer = 75
+    console.log(timer)
     var timerInterval = setInterval(function() {
         timer--
         timerEl.textContent = "Time: " + timer
@@ -174,7 +201,9 @@ function time(){
 }
 
 buttonEl.addEventListener("click", function(){
-    timer = 3
+    timer = 75
+    questionNumber = 0
+    console.log(timer, questionNumber)
     time()
 
     toggleStart() 
@@ -191,8 +220,8 @@ buttonEl.addEventListener("click", function(){
         if(element.matches("button")){
             var index = element.getAttribute("data-index")
 
-            console.log(index)
-
+            console.log(index, questions[questionNumber].correct)
+            
             if(index == questions[questionNumber].correct){
                 questionNumber++
                 toggleCorrect()
@@ -213,4 +242,15 @@ buttonEl.addEventListener("click", function(){
 
 
 
+})
+
+clearButton.addEventListener("click", function(){
+    localStorage.clear()
+
+    while(userScores.lastElementChild){
+        userScores.removeChild(userScores.lastElementChild)
+    }
+
+    toggleScore()
+    toggleScore()
 })

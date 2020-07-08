@@ -6,67 +6,102 @@
 
     <!-- CSS file -->
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 
     <title>Quiz App</title>
 </head>
 
 <body>
 
-    <header>
-        <div>View Highscores</div>
-        <div id="timer">Time: 75</div>
 
-    </header>
+    <div class="container m-4">
+        <header>
+
+            <div class="row justify-content-between">
+                <div class="row-4">
+                    View Highscores
     
-    <section id="start" style="display: block;">
-        <h1>Coding Quiz Challenge</h1>
-        <h4>Try  to answer the following code-related questions within the time <br>
-        limit. keep in mind that incorrect answers will penalize your score/time <br>
-        by ten seconds!
-        </h4>
-
-        <button id="startButton">Start Quiz</button>
-
-    </section>
+                </div>
+                <div class="row-4" id="timer">
+                    Time: 75</div>
+            </div>
+       
+            
+    
+        </header>
 
 
-    <section id="quiz" style="display: none;" >
-        <div id="question">
+        
+        <section class="row justify-content-center m-4 p-4" id="start" style="display: block;">
 
-        </div>
+            <div class="col text-center">
 
-        <div id="answers">
+                <h1>Coding Quiz Challenge</h1>
 
-        </div>
+            </div>
 
-    </section>
+
+            <div class="col text-center">
+
+                <h4>Try  to answer the following code-related questions within the time <br>
+                    limit. keep in mind that incorrect answers will penalize your score/time <br>
+                    by ten seconds!
+                    </h4>
+
+            </div>
+
+            <div class="col d-flex justify-content-center  m-4 p-4">
+
+                <button class="btn btn-primary" id="startButton">Start Quiz</button>
+            </div>
+ 
+    
+        </section>
+    
+    
+        <section class="row justify-content-center  m-4 p-4" id="quiz" style="display: none;" >
+            <h3 class="col text-center" id="question">
+    
+            </h3>
+    
+            <div class="col text-center" id="answers">
+    
+            </div>
+    
+        </section>
+        
+    
+        <section class="row justify-content-center  m-4 p-4" id="done" style="display: none;">
+            <h1 >All done!</h1>
+            <h4 id="userScore">Your final score is </h4>
+            <label for="name">Enter initials</label>
+            <input type="text" name="name" id="name">
+            <button id="submit" class="btn btn-primary">Submit</button>
+        </section>
+    
+        <section class="row justify-content-center  m-4 p-4" id="score" style="display: none;">
+            <h1>Highscores</h1>
+            <ol id="userScores">
+            </ol>
+            <button class="btn btn-primary" id="back">Go back</button>
+            <button class="btn btn-primary" id="clear">Clear Highscores</button>
+        </section>
+    
+        <section class="row justify-content-center  m-4 p-4"  id="wrong" style="display: none;">
+            <hr>
+            <h4>wrong</h4>
+        </section>
+    
+        <section id="correct" style="display: none;">
+            <hr>
+            <h4>Correct!</h4>
+        </section>
     
 
-    <section id="done" style="display: none;">
-        <h1>All done!</h1>
-        <h4 id="userScore">Your final score is </h4>
-        <label for="name">Enter initials</label>
-        <input type="text" name="name" id="name">
-        <button id="submit" class="btn btn-primary">Submit</button>
-    </section>
+        
+    </div>
 
-    <section id="score" style="display: none;">
-        <h1>Highscores</h1>
-        <ol id="userScores">
-        </ol>
-        <button id="back">Go back</button>
-        <button>Clear Highscores</button>
-    </section>
-
-    <section id="wrong" style="display: none;">
-        <hr>
-        <h4>wrong</h4>
-    </section>
-
-    <section id="correct" style="display: none;">
-        <hr>
-        <h4>Correct!</h4>
-    </section>
 
 
     
