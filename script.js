@@ -17,9 +17,7 @@ var clearButton = document.querySelector("#clear")
 var highScoresWl = document.querySelector("#highScores")
 
 var questionNumber = 0
-// var question = ''
-// var answer = ''
-// var correct = ''
+
 var timer = 75
 var finalScore = 0
 
@@ -33,20 +31,23 @@ var questions = [{
     answer: ["quotes","curly brackets", "parentheses", "square brackets" ],
     correct:2,
 }
-// ,
-// {
-//     question: "Arrays in JavaScript can be used to store _____.",
-//     answer: ["numbers and strings","other arrays", "booleans", "all of the above" ],
-//     correct:4,
-// },
-// {
-//     question: "String values must be enclosed within _______ when being assigned to variables.",
-//     answer: ["commas","curly brackets", "parentheses", "square brackets" ],
-//     correct:3,
-// }
+,
+{
+    question: "Arrays in JavaScript can be used to store _____.",
+    answer: ["numbers and strings","other arrays", "booleans", "all of the above" ],
+    correct:4,
+},
+{
+    question: "String values must be enclosed within _______ when being assigned to variables.",
+    answer: ["commas","curly brackets", "parentheses", "square brackets" ],
+    correct:3,
+}
 ]
 
+
 function toggleDone() {
+    // Toggles the done element
+    // Displays user score
     if(doneEl.style.display == "none"){
         doneEl.style.display = "block"
         userScoreEl.textContent = "Your final score " + finalScore
@@ -59,7 +60,7 @@ function toggleDone() {
 
 function toggleScore() {
 
-
+    // Toggles the score element, Displays top scores
     while (userScores.lastElementChild) {
         userScores.removeChild(userScores.lastElementChild);
       }
@@ -83,6 +84,8 @@ function toggleScore() {
 }
 
 function toggleStart() {
+    // Toggles the start Element, Instructions and start button
+
     if(startEl.style.display == "none"){
         startEl.style.display = "block"
     }
@@ -93,6 +96,7 @@ function toggleStart() {
 }
 
 function toggleQuiz() {
+    // Toggles the quiz element
     if(quizEl.style.display == "none"){
         quizEl.style.display = "block"
     }
@@ -103,6 +107,7 @@ function toggleQuiz() {
 }
 
 function toggleWrong() {
+    // If user picked wrong answer, toggles the wrong element, 1 second timer
     if(wrongEl.style.display == "none"){
         wrongEl.style.display = "block"
         var correctTime = 1
@@ -122,6 +127,8 @@ function toggleWrong() {
 }
 
 function toggleCorrect() {
+    // If user picked right answer, toggles the wrong element, 1 second timer
+
     if(correctEl.style.display == "none"){
         correctEl.style.display = "block"
 
@@ -143,7 +150,7 @@ function toggleCorrect() {
 
 function loadQuestion() {
 
-    
+    // Loads Questions
 
     while (answerEl.lastElementChild) {
         answerEl.removeChild(answerEl.lastElementChild);
@@ -171,6 +178,7 @@ function loadQuestion() {
 
 }
 
+// Submits the name to local storage
 submitButton.addEventListener("click", function () {
     toggleDone()
     var name = nameInput.value.trim()
@@ -179,14 +187,14 @@ submitButton.addEventListener("click", function () {
 
 })
 
-
+// Returns user to home screen
 backButton.addEventListener("click", function(){
     toggleScore()
     toggleStart()
     timerEl.textContent = "Time: 75"
 })
 
-
+// Set timer for quiz
 function time(){
     // timer = 75
     console.log(timer)
@@ -206,6 +214,7 @@ function time(){
 
 }
 
+// Starts the quiz
 buttonEl.addEventListener("click", function(){
     timer = 75
     questionNumber = 0
@@ -250,6 +259,8 @@ buttonEl.addEventListener("click", function(){
 
 })
 
+
+// Clears local storage
 clearButton.addEventListener("click", function(){
     localStorage.clear()
 
@@ -261,6 +272,7 @@ clearButton.addEventListener("click", function(){
     toggleScore()
 })
 
+// Shows high scores
 highScoresWl.addEventListener("click", function(){
     toggleStart()
     toggleScore()
