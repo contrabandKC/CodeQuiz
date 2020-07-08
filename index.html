@@ -14,7 +14,7 @@
 
     <header>
         <div>View Highscores</div>
-        <div id="timer">Time</div>
+        <div id="timer">Time: 75</div>
 
     </header>
     
@@ -44,16 +44,15 @@
 
     <section id="done" style="display: none;">
         <h1>All done!</h1>
-        <h4 id="user Score">Your final score is </h4>
+        <h4 id="userScore">Your final score is </h4>
         <label for="name">Enter initials</label>
-        <input type="text" id="name">
+        <input type="text" name="name" id="name">
         <button id="submit" class="btn btn-primary">Submit</button>
     </section>
 
     <section id="score" style="display: none;">
         <h1>Highscores</h1>
-        <ol>
-            <li>name 22</li>
+        <ol id="userScores">
         </ol>
         <button id="back">Go back</button>
         <button>Clear Highscores</button>

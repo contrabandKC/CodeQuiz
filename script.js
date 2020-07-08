@@ -10,27 +10,43 @@ var scoreEl = document.querySelector("#score")
 var backButton  = document.querySelector("#back")
 var wrongEl = document.querySelector("#wrong")
 var correctEl = document.querySelector("#correct")
+var userScoreEl = document.querySelector("#userScore")
+var nameInput=document.querySelector("#name")
+var userScores = document.querySelector("#userScores")
 
 var questionNumber = 0
 var question = ''
 var answer = ''
 var correct = ''
-var timer = 75
+var timer = 3
 
 var questions = [{
-    question: "question 1",
-    answer: ["answer1","answer 2", "answer 3", "Answer 4" ],
-    correct:1,
+    question: "Commonly used data types DO NOT include:",
+    answer: ["Strings","booleans", "alerts", "numbers" ],
+    correct:3,
 },
 {
-    question: "question 2",
-    answer: ["answer1","answer 2", "answer 3", "Answer 4" ],
-    correct:1,
-}]
+    question: "The condition in an if/else statement is enclose within ____.",
+    answer: ["quotes","curly brackets", "parentheses", "square brackets" ],
+    correct:3,
+}
+// ,
+// {
+//     question: "Arrays in JavaScript can be used to store _____.",
+//     answer: ["numbers and strings","other arrays", "booleans", "all of the above" ],
+//     correct:4,
+// },
+// {
+//     question: "String values must be enclosed within _______ when being assigned to variables.",
+//     answer: ["commas","curly brackets", "parentheses", "square brackets" ],
+//     correct:3,
+// }
+]
 
 function toggleDone() {
     if(doneEl.style.display == "none"){
         doneEl.style.display = "block"
+        userScoreEl.textContent = "Your final score " + timer
     }
     else{
         doneEl.style.display = "none"
@@ -41,6 +57,15 @@ function toggleDone() {
 function toggleScore() {
     if(scoreEl.style.display == "none"){
         scoreEl.style.display = "block"
+
+        Object.keys(localStorage).forEach(element => {
+            var user = document.createElement("li")
+            user.textContent = element + " - " +localStorage.getItem(element)
+            userScores.appendChild(user)
+            console.log(element, element.value )
+            
+        });
+
     }
     else{
         scoreEl.style.display = "none"
@@ -88,30 +113,6 @@ function toggleCorrect() {
     }
 }
 
-
-
-var timerInterval = setInterval(function() {
-    timer--
-    timerEl.textContent = "Time: " + timer
-    
-    if(timer == 0){
-        clearInterval(timerInterval)
-        toggleQuiz()
-        toggleDone()
-    }
-
-}, 1000)
-
-
-
-function time(){
-
-    timerInterval
-
-}
-
-// time()
-
 function loadQuestion() {
 
     
@@ -134,18 +135,55 @@ function loadQuestion() {
     }
     else{
         clearInterval(timerInterval)
+        toggleDone()
 
     }
 
 }
 
+submitButton.addEventListener("click", function () {
+    toggleDone()
+    toggleScore()
+    var name = nameInput.value.trim()
+    localStorage.setItem(name, timer)
+})
+
+
+backButton.addEventListener("click", function(){
+    toggleScore()
+    toggleStart()
+})
+
+
+function time(){
+
+    var timerInterval = setInterval(function() {
+        timer--
+        timerEl.textContent = "Time: " + timer
+        
+
+        if(timer == 0){
+            clearInterval(timerInterval)
+            toggleQuiz()
+            toggleDone()
+        }
+    
+    }, 1000)
+
+
+}
+
 buttonEl.addEventListener("click", function(){
+    timer = 3
+    time()
 
     toggleStart() 
     toggleQuiz()
 
     loadQuestion()
 
+
+    
     
     answerEl.addEventListener("click", function (event) {
         var element = event.target
@@ -156,7 +194,6 @@ buttonEl.addEventListener("click", function(){
             console.log(index)
 
             if(index == questions[questionNumber].correct){
-                console.log("correct")
                 questionNumber++
                 toggleCorrect()
                 loadQuestion()
@@ -164,7 +201,7 @@ buttonEl.addEventListener("click", function(){
             }
             else{
                 questionNumber++
-                timer = timer - 15
+                timer -= 15
                 loadQuestion()
                 toggleWrong()
             }
@@ -172,20 +209,8 @@ buttonEl.addEventListener("click", function(){
         }
     })
    
-    time()
 
 
 
 
-})
-
-submitButton.addEventListener("click", function () {
-    toggleDone()
-    toggleScore()
-})
-
-
-backButton.addEventListener("click", function(){
-    toggleScore()
-    toggleStart()
 })
